@@ -2,15 +2,14 @@ package mehrabi.springframework.springframeworkwebservices.web.controller;
 
 import mehrabi.springframework.springframeworkwebservices.services.BeerService;
 import mehrabi.springframework.springframeworkwebservices.web.model.BeerDTO;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+@Deprecated
 @RequestMapping("/api/v1/beer")
 @RestController
 public class BeerController {
@@ -24,5 +23,30 @@ public class BeerController {
     @GetMapping({"/{beerId}"})
     public ResponseEntity<BeerDTO> getBeer(@PathVariable("beerId") UUID beerId){
         return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<String> handlePost(@RequestBody BeerDTO  beerDTO){
+        BeerDTO savedBeer = beerService.saveNewBeer(beerDTO);
+
+        HttpHeaders headers  =  new HttpHeaders();
+
+        headers.add("Location","/api/v1/beer/"+savedBeer.getId().toString());
+
+        return new ResponseEntity<>(headers,HttpStatus.CREATED);
+    }
+
+    @PutMapping({"/{beerId}"})
+    public ResponseEntity<HttpStatus> handleUpdate(@PathVariable("beerId") UUID beerId,@RequestBody BeerDTO beerDTO){
+
+        beerService.updateBeer(beerId,beerDTO);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping({"/{beerId}"})
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void handleUpdate(@PathVariable("beerId") UUID beerId){
+        beerService.deleteBeerById(beerId);
     }
 }
