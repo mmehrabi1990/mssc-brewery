@@ -1,5 +1,8 @@
 package mehrabi.springframework.springframeworkwebservices.web.controller.v2;
 
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import mehrabi.springframework.springframeworkwebservices.services.v2.BeerServiceV2;
 import mehrabi.springframework.springframeworkwebservices.web.model.v2.BeerDTOV2;
 import org.springframework.http.HttpHeaders;
@@ -15,16 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 @RequestMapping("/api/v2/beer")
 @RestController
 @Validated
+@AllArgsConstructor
 public class BeerControllerV2 {
 
     private final BeerServiceV2 beerServiceV2;
-
-    public BeerControllerV2(BeerServiceV2 beerServiceV2) {
-        this.beerServiceV2 = beerServiceV2;
-    }
 
     @GetMapping({"/{beerId}"})
     public ResponseEntity<BeerDTOV2> getBeer(@NotNull @PathVariable("beerId") UUID beerId){
@@ -33,9 +34,9 @@ public class BeerControllerV2 {
 
     @PostMapping
     public ResponseEntity<String> handlePost(@Valid @NotNull @RequestBody BeerDTOV2  beerDTOV2){
-        BeerDTOV2 savedBeer = beerServiceV2.saveNewBeer(beerDTOV2);
+        val savedBeer = beerServiceV2.saveNewBeer(beerDTOV2);
 
-        HttpHeaders headers  =  new HttpHeaders();
+        var headers  =  new HttpHeaders();
 
         headers.add("Location","/api/v1/beer/"+savedBeer.getId().toString());
 
