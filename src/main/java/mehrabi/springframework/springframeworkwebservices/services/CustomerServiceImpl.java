@@ -1,7 +1,6 @@
 package mehrabi.springframework.springframeworkwebservices.services;
 
 import lombok.extern.slf4j.Slf4j;
-import mehrabi.springframework.springframeworkwebservices.web.model.BeerDTO;
 import mehrabi.springframework.springframeworkwebservices.web.model.CustomerDTO;
 import org.springframework.stereotype.Service;
 

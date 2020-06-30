@@ -2,7 +2,7 @@ package mehrabi.springframework.springframeworkwebservices.web.controller;
 
 import mehrabi.springframework.springframeworkwebservices.services.CustomerService;
 import mehrabi.springframework.springframeworkwebservices.web.model.CustomerDTO;
-import mehrabi.springframework.springframeworkwebservices.web.model.CustomerDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
