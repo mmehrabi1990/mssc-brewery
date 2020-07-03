@@ -1,6 +1,5 @@
 package mehrabi.springframework.springframeworkwebservices.services.v2;
 
-import mehrabi.springframework.springframeworkwebservices.web.model.BeerDTO;
 import mehrabi.springframework.springframeworkwebservices.web.model.v2.BeerDTOV2;
 
 import java.util.UUID;

@@ -21,7 +21,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void updateCustomer(UUID customerId, CustomerDTO customerDTO) {
-
+        //for sample
     }
 
     @Override

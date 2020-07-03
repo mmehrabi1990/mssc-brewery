@@ -4,7 +4,7 @@ import mehrabi.springframework.springframeworkwebservices.domain.Customer;
 import mehrabi.springframework.springframeworkwebservices.web.model.CustomerDTO;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(uses = {DateMapper.class})
 public interface CustomerMapper {
 
     CustomerDTO  customerToCustomerTDO(Customer customer);

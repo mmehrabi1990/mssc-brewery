@@ -21,7 +21,7 @@ public class BeerServiceImpl implements BeerService {
 
     @Override
     public void updateBeer(UUID beerId, BeerDTO beerDTO) {
-
+        //for sample
     }
 
     @Override
